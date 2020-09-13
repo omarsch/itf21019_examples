@@ -9,15 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
 
        private Button navigateToOtherButton;
-
+        public static final String KEY_NAME = "name";
+       private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textView = findViewById(R.id.textView);
 
 
         navigateToOtherButton=findViewById(R.id.main_activityb);
@@ -26,23 +30,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
-
+                sendTextFromThisPage(view);
             }
         });
 
     }
 
-    public void goToOtherActivity(){
-        final Intent intent= new Intent(this,OtherActivity.class);
-        startActivity(intent);
-    }
+    public void sendTextFromThisPage(View view){
+        Intent intent=new Intent(view.getContext(), OtherActivity.class);
 
-    public void sendTextToOtherActivity(){
-        final Intent textIntent= new Intent(MainActivity.this,OtherActivity.class);
-        TextView textView=(TextView) findViewById(R.id.textView);
-        String message= String.valueOf(textView.getText());
-        textIntent.putExtra("message" , message);
-        startActivity(textIntent);
+        String name = textView.getText().toString();
+
+        intent.putExtra(KEY_NAME, name);
+
+        startActivity(intent);
     }
 
     public void openWebPage(String url){
@@ -53,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openGPS(){
-        
+        Uri uri= Uri.parse("geo:59.128708,11.353176");
+        Intent intent=new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
     // TODO 3.3: Create openWebPage(View view) method to handle the click
     // TODO 3.4: Create an Intent

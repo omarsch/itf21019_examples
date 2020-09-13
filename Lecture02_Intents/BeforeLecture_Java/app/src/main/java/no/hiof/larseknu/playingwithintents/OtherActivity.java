@@ -2,6 +2,7 @@ package no.hiof.larseknu.playingwithintents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class OtherActivity extends AppCompatActivity {
         setTextFromPastView();
 
         // TODO 2.7: Get a reference to the intent we receive from MainActivity
+
         // TODO 2.8: Get the extra "name" information from the intent
         // TODO 2.9: Fill the TextView with the String from the extra-data
 
@@ -24,10 +26,11 @@ public class OtherActivity extends AppCompatActivity {
     }
 
     public void setTextFromPastView(){
-        Bundle bundle= getIntent().getExtras();
-        String message= bundle.getString("message");
-        TextView textView=(TextView) findViewById(R.id.textView2);
-        textView.setText(message);
+
+        Intent receiveIntent = getIntent();
+        String name= receiveIntent.getStringExtra(MainActivity.KEY_NAME);
+        TextView textView= findViewById(R.id.textView2);
+        textView.setText(name);
     }
 
     // TODO 5.6: Create getPicture(View view) method to handle the click
