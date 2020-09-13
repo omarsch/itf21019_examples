@@ -2,33 +2,59 @@ package no.hiof.larseknu.playingwithintents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO 2.4: Create a constant (public static final) to represent the key in the extra for the intent
 
-    //TODO 1.3: Create a field variable for the button navigateToOtherButton
+       private Button navigateToOtherButton;
 
-    //TODO 2.2: Create a field variable (nameEditText) for the EditText view
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO 2.3: Instantiate nameEditText
 
-        // TODO 1.4: Instantiate navigateToOtherButton
-        // TODO 1.5: Add a onClickListener to the navigateToOtherButton
+        navigateToOtherButton=findViewById(R.id.main_activityb);
+        navigateToOtherButton.setOnClickListener(new View.OnClickListener() {
 
-        // TODO 1.6: Create an Intent to start OtherActivity in the navigate... method
+            @Override
 
-        // TODO 2.5: Get the text from the EditText when navigateToOtherActivity is ran
-        // TODO 2.6: Put the text from the EditText into the extra information in the Intent
+            public void onClick(View view) {
 
-        // TODO 1.7: Start OtherActivity with the intent
+            }
+        });
+
     }
 
+    public void goToOtherActivity(){
+        final Intent intent= new Intent(this,OtherActivity.class);
+        startActivity(intent);
+    }
+
+    public void sendTextToOtherActivity(){
+        final Intent textIntent= new Intent(MainActivity.this,OtherActivity.class);
+        TextView textView=(TextView) findViewById(R.id.textView);
+        String message= String.valueOf(textView.getText());
+        textIntent.putExtra("message" , message);
+        startActivity(textIntent);
+    }
+
+    public void openWebPage(String url){
+
+        final Intent intent= new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openGPS(){
+        
+    }
     // TODO 3.3: Create openWebPage(View view) method to handle the click
     // TODO 3.4: Create an Intent
     // TODO 3.5: Set action ACTION_VIEW to the intent

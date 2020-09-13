@@ -3,6 +3,7 @@ package no.hiof.larseknu.playingwithintents;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class OtherActivity extends AppCompatActivity {
     // TODO 5.9: Create a constant integer for the image request
@@ -13,12 +14,20 @@ public class OtherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other);
+        setTextFromPastView();
 
         // TODO 2.7: Get a reference to the intent we receive from MainActivity
         // TODO 2.8: Get the extra "name" information from the intent
         // TODO 2.9: Fill the TextView with the String from the extra-data
 
         // TODO 5.5: Instantiate the ImageView
+    }
+
+    public void setTextFromPastView(){
+        Bundle bundle= getIntent().getExtras();
+        String message= bundle.getString("message");
+        TextView textView=(TextView) findViewById(R.id.textView2);
+        textView.setText(message);
     }
 
     // TODO 5.6: Create getPicture(View view) method to handle the click

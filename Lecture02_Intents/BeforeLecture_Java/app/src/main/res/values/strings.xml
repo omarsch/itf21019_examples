@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PlayingWithIntents</string>
+    <string name="main_activity">Send</string>
+    <string name="textView1">EditText</string>
 </resources>
